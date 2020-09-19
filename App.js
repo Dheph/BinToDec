@@ -1,42 +1,60 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import { Alert,StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native';
 
 export default function App() {
 
-// const [decimal, setDecimal] = useState('');
-const [binary, setBinary] = useState('');
 const [decimal, setDecimal] = useState('');
+// const [octal, setOctal] = useState('');
+// const [hexadecimal, setHexadecimal] = useState('');
+const [binary, setBinary] = useState('');
 
 function converter(){
   
   if(binary.match(/^[0-1]+$/g) === null){
-    alert('entre com um número entre 0 ou 1')
+    return Alert.alert('Valor Inserido Inválido','por favor digite um número entre 0 ou 1')
   }
 
   const reverseBinary = binary
-    .split('') // percorre os dados
-    .map(Number) // converter para um numero de string
-    .reverse() //inverte a posição dos numeros
+    .split('') 
+    .map(Number) 
+    .reverse()
 
-    console.log(reverseBinary)
+    //para conversçao octal 
+    //quebrar o numero em grupo de 3
+    //fazer o calculo de conversão para decimal para os grupos
+    //juntar os resultados em 
+    // metodo para unir join
 
+    // hexadecimal é quebrado em 4 partes
+   console.log(reverseBinary.length)
 
-    const result = reverseBinary.reduce(
+    const resultDecimal = reverseBinary.reduce(
       (accumulator,currentValue,index) => 
 
       accumulator + currentValue * Math.pow(2,index)
       
       )
-      setDecimal(result)
-      alert('resultado da conversão : ' + result)
+    
+
+
+      setDecimal(resultDecimal)
+      Alert.alert('Perfeito!!','Valor convertido com sucesso !!');
     }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bin To Dec</Text>
+      <Text style={styles.title}>Conversor</Text>
+      <View style={styles.resultBox}>
+
+        <Text style={styles.resultText}> Decimal : {decimal} </Text>
+        {/* <Text style={styles.resultText}> Octal : {octal} </Text>
+        <Text style={styles.resultText}> Hexadecimal : {hexadecimal} </Text> */}
+
+      </View>
 
       <TextInput
+      placeholder="Insira um Binário"
       style={styles.input}
       onChangeText={text => setBinary(text)}
       value={binary}
@@ -47,6 +65,7 @@ function converter(){
       >
         <Text style={styles.textButton}>Converter</Text>
       </TouchableOpacity>
+
       <StatusBar style="auto" />
     </View>
   );
@@ -55,31 +74,46 @@ function converter(){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
   },
   title: {
-    fontSize:30,
+    color:"#fff",
+    marginBottom:20,
+    fontSize:25,
     fontWeight:'bold',
     fontStyle:'italic'
   },
+  resultBox: {
+    width:200,
+    height:150,
+    backgroundColor:'transparent',
+    borderWidth:2,
+    borderColor:'#fff',
+    borderRadius:25,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  resultText: {
+    padding:5,
+    color:'#fff'
+  },
   input: {
     textAlign:'center',
-    backgroundColor:'#d3d3d3',
-    borderWidth:1,
-    borderColor:'black',
-    borderStyle:'dashed',
-    color:'#000',
-    width:300,
+    backgroundColor:'transparent',
+    borderWidth:2,
+    borderColor:'#fff',
+    color:'#fff',
+    width:200,
     height:40,
     marginTop:20,
     borderRadius:30
   },
   button: {
     borderRadius:40,
-    borderColor:'red',
-    borderWidth:2,
+    borderColor:'#14213D',
+    borderWidth:5,
     width:250,
     marginTop:30,
     padding:20,

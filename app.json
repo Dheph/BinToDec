@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Bin2Dec",
-    "slug": "Bin2Dec",
+    "name": "BinToDec",
+    "slug": "BinToDec",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,6 +21,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "com.dhepherson.BinToDec"
     }
   }
 }
