@@ -5,8 +5,6 @@ import { Alert,StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-
 export default function App() {
 
 const [decimal, setDecimal] = useState('');
-// const [octal, setOctal] = useState('');
-// const [hexadecimal, setHexadecimal] = useState('');
 const [binary, setBinary] = useState('');
 
 function converter(){
@@ -20,13 +18,6 @@ function converter(){
     .map(Number) 
     .reverse()
 
-    //para conversçao octal 
-    //quebrar o numero em grupo de 3
-    //fazer o calculo de conversão para decimal para os grupos
-    //juntar os resultados em 
-    // metodo para unir join
-
-    // hexadecimal é quebrado em 4 partes
    console.log(reverseBinary.length)
 
     const resultDecimal = reverseBinary.reduce(
@@ -35,8 +26,6 @@ function converter(){
       accumulator + currentValue * Math.pow(2,index)
       
       )
-    
-
 
       setDecimal(resultDecimal)
       Alert.alert('Perfeito!!','Valor convertido com sucesso !!');
@@ -48,9 +37,7 @@ function converter(){
       <View style={styles.resultBox}>
 
         <Text style={styles.resultText}> Decimal : {decimal} </Text>
-        {/* <Text style={styles.resultText}> Octal : {octal} </Text>
-        <Text style={styles.resultText}> Hexadecimal : {hexadecimal} </Text> */}
-
+  
       </View>
 
       <TextInput
